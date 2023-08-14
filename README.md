@@ -27,5 +27,6 @@ The **novelties** are:
 
 # Build 
 
+Build instructions are in the sources folder.
 
 
