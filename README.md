@@ -4,6 +4,20 @@ Tiny Machine Learning Virtualization for IoT and Edge Computing using the REXA V
 
 rexavm: "Real-time capable execution with Artificial Neural Network support" Virtual Machine
 
+---
+
+**From now on, any updates are only availble here**:
+
+http://git.edu-9.de/sbosse/rexavm
+
+---
+
+**Since 10/2023 github enforces a two-factor or multi-factor authentication, which is neither required in principle nor comfortable in daily use of a code repository. This was introduced for economical reasons (Microsoft as github owner sells 2FA/MFA software solutions and want to remove non-profit, i.e., low-impact, repositories), higher user control, and not for security primarily, and leads to an unnecessary collection of sensitive personal data and linking of services that should be rejected by users and developers.**
+
+<a href="https://www.battleforlibraries.com/">Fight For the Future</a>
+
+---
+
 # Abstract
 
 Tiny Machine Learning is a new approach that is being used for data-driven prediction classification and regression on microcontrollers using local sensor data. The models are typically learned off-line and sent to the microcontroller for use as binary objects or frozen and converted static data. This approach is not universal or flexible. The REXA VM can virtualize embedded systems and sensor nodes and includes a general machine learning framework that supports arbitrary dynamic artificial neural network and decision tree models. The models are delivered as text files with highly compressed program code that are enclosed in code frames with embedded data (model parameters). The VM offers fundamental computations for ANN, CNN, and DT models (Microservices). 
