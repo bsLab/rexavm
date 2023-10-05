@@ -1,0 +1,2 @@
+STACKCHECK(1);b=POP();FSTACKCHECK(b);a=FSTACKTOP(b);PUSH(a)
+pc++;DISPATCH(); /* f */
