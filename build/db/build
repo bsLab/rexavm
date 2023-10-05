@@ -1,0 +1,15 @@
+#!/bin/bash
+
+SRC=../../src/tools/js
+
+make()
+{
+  echo $@
+  $@
+}
+makeDB() 
+{
+  make node $SRC/buildDB.js
+}
+
+makeDB
