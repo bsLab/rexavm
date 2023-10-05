@@ -1,0 +1,141 @@
+#!/bin/bash
+
+TOOLS=../../src/tools
+CONFIG=../../src/config
+SRC=../../src/c
+INC=../../src/c
+MAKEVM=../tools/makeVM
+AR="ar cr"
+OPT="-O3"
+
+# Config
+LEXER=1
+DICTLINEAR=0
+CODESIZE=32768
+STACKSIZE=16000
+RSTACKSIZE=4000
+FSTACKSIZE=4000
+LUTSIZE=300
+READLINE=1
+
+check ()
+{
+  if [ $? != 0 ]
+  then
+    echo "Abort due to errors building target."
+    exit 1
+  fi
+}
+
+make() 
+{
+  echo "$@"
+  $@
+}
+
+makeVM()
+{
+  make $MAKEVM --with-dsp -D LEXER=$LEXER -D DICTLINEAR=$DICTLINEAR -D READLINE=$READLINE \
+               -D CODESIZE=$CODESIZE -D STACKSIZE=$STACKSIZE -D RSTACKSIZE=$RSTACKSIZE \
+               -D FSTACKSIZE=$FSTACKSIZE -D LUTSIZE=$LUTSIZE -D FPDEBUG=0 -o out default
+  # $CONFIG/wordlist.txt
+  check
+}
+
+makeCore()
+{
+  SRC=out
+  INC=./out
+  TARGETS="compile.o diss.o vm.o stack.o dict.o vmio.o vmloop.o vmsys.o vmwords.o"
+  if [ -f out/lookupa.c ]
+  then
+    TARGETS="lookupa.o $TARGETS"
+  fi
+  if [ -f out/lookupl.c ]
+  then
+    TARGETS="lookupl.o $TARGETS"  
+  fi
+  if [ -f out/readline.c ]
+  then
+    TARGETS="readline.o $TARGETS"  
+  fi
+  OUTPUT=""
+  for target in $TARGETS
+  do
+    make gcc $OPT -Wfatal-errors $OPT -g -I $INC -I ./ -I ./out -c $SRC/${target%\.o}.c -o out/$target
+    check
+    OUTPUT="$OUTPUT out/$target"
+  done
+  rm -f out/vm.a
+  make $AR out/vm.a $OUTPUT
+}
+
+makeDSP()
+{
+  for file in out/fp*.c
+  do
+    make gcc $OPT -Wfatal-errors $OPT -g -I $INC -I ./ -I ./out -c $file -o ${file%\.c}.o
+    check
+  done
+  rm -f out/dsp.a
+  make $AR out/dsp.a out/fp*.o
+}
+
+makeMain()
+{
+  make gcc -Wfatal-errors $OPT -g -I $INC -I ./ -I ./out -c out/main.c -o out/main.o
+  check
+  make gcc $OPT out/main.o out/dsp.a out/vm.a -o vm
+}
+
+while [ $1 ]
+do
+    TARGET=$1
+    shift
+    echo "Building target [$TARGET] ..."
+
+    case $TARGET in
+        all)
+            rm -f out/*
+            makeVM
+            check
+            makeCore
+            check
+            makeDSP
+            check
+            makeMain
+            check
+            ;;
+        c)
+            makeCore
+            check
+            makeDSP
+            check
+            makeMain
+            check
+            ;;
+        vm)
+            makeVM
+            check
+            ;;
+        world)
+            rm -f out/*
+            cd ../db
+            build all
+            check
+            cd -
+            cd ../tools
+            build all
+            check
+            cd -
+            makeVM
+            check
+            makeCore
+            check
+            makeDSP
+            check
+            makeMain
+            check            
+            ;;
+    esac
+done
