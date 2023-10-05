@@ -1,0 +1,9 @@
+FILES:
+
+@ + tools/js/buildDB.js
+
+PROJECT:
+  PROJ_PATH $HOME/proj/rexavm/
+  SRC_PATH $PROJ_PATH/src
+  OBJ_PATH $PROJ_PATH/build
+
