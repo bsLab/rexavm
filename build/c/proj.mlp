@@ -1,0 +1,193 @@
+FILES:
+
+
+
+--- LST -------
+
+@ + tools/js/buildDB.js
+@ + tools/js/compiler.js
+@ + tools/js/makelst.js
+@ + tools/js/makeWords.js
+@ + tools/js/makeVM.js
+@ + tools/js/lst.js
+
+--- CORE VM ---
+@ + c/compile.c
+@ + c/compile.h
+@ + c/dict.c
+@ + c/dict.h
+@ + c/diss.c
+@ + c/diss.h
+@ + c/lookupa.c
+@ + c/lookupa.h
+@ + c/lookupl.c
+@ + c/lookupl.h
+@ + c/stack.c
+@ + c/stack.h
+@ + c/standard.h
+@ + c/vm.c
+@ + c/vm.h
+@ + c/vmloop.h
+@ + c/vmcode.h
+@ + c/vmio.h
+@ + c/vmio.c
+@ + c/vmsys.h
+@ + c/vmsys.c
+
+
+
+--- TOP ---
+@ + c/sys/unix/main.c
+@ + c/sys/unix/MILLI.c
+
+@ + c/sys/stm32/main.templ.c
+@ + c/sys/stm32/arduino.h
+
+@ + config/wordlist.txt
+@ + config/wordlistX.txt
+
+--- READLINE ---
+@ + c/sys/readline/readline.c
+@ + c/sys/readline/readline.h
+
+--- DSP ---
+@ + c/dsp/fprelu.c
+@ + c/dsp/fprelu.h
+@ + c/dsp/fpsin.c
+@ + c/dsp/fpsin.h
+@ + c/dsp/fplog10.c
+@ + c/dsp/fplog10.h
+@ + c/dsp/fpsigmoid.c
+@ + c/dsp/fpsigmoid.h
+@ + c/dsp/fpvec.c
+@ + c/dsp/fpvec.h
+
+--- OPS ---
+@ + c/ops/ABS.c
+@ + c/ops/AGAIN.c
+@ + c/ops/AND.c
+@ + c/ops/ARRAY.c
+@ + c/ops/AWAIT.c
+@ + c/ops/BASE.c
+@ + c/ops/BEGIN.c
+@ + c/ops/BRANCH.c
+@ + c/ops/BRANCHZ.c
+@ + c/ops/CALL.c
+@ + c/ops/CDOLL.c
+@ + c/ops/CDOT.c
+@ + c/ops/CDOTCSTR.c
+@ + c/ops/CDOTS.c
+@ + c/ops/CELLCPLU.c
+@ + c/ops/CEQ.c
+@ + c/ops/CGT.c
+@ + c/ops/CGTF.c
+@ + c/ops/CGTR.c
+@ + c/ops/CLT.c
+@ + c/ops/CMIN.c
+@ + c/ops/CMINDUP.c
+@ + c/ops/CMINROT.c
+@ + c/ops/CMUL.c
+@ + c/ops/CONST.c
+@ + c/ops/CPLU.c
+@ + c/ops/CPLULOOP.c
+@ + c/ops/CQUESTDUP.c
+@ + c/ops/CQUO.c
+@ + c/ops/CR.c
+@ + c/ops/DEFINE.c
+@ + c/ops/DEFINECMUL.c
+@ + c/ops/DEFRET.c
+@ + c/ops/DO.c
+@ + c/ops/DROP.c
+@ + c/ops/DUP.c
+@ + c/ops/ELSE.c
+@ + c/ops/END.c
+@ + c/ops/ENDIF.c
+@ + c/ops/F.c
+@ + c/ops/FCALL.c
+@ + c/ops/FCGT.c
+@ + c/ops/FDROP.c
+@ + c/ops/FETCH.c
+@ + c/ops/FORGET.c
+@ + c/ops/FPICK.c
+@ + c/ops/I.c
+@ + c/ops/IF.c
+@ + c/ops/INDIRECT.c
+@ + c/ops/INP.c
+@ + c/ops/J.c
+@ + c/ops/LEAVE.c
+@ + c/ops/LIT.c
+@ + c/ops/LOAD.c
+@ + c/ops/LOOP.c
+@ + c/ops/MAX.c
+@ + c/ops/MIN.c
+@ + c/ops/MINUS.c
+@ + c/ops/MOD.c
+@ + c/ops/MULADD.c
+@ + c/ops/NIP.c
+@ + c/ops/NOP.c
+@ + c/ops/ONE.c
+@ + c/ops/OR.c
+@ + c/ops/OUT.c
+@ + c/ops/OVER.c
+@ + c/ops/PICK.c
+@ + c/ops/R.c
+@ + c/ops/RCGT.c
+@ + c/ops/READ.c
+@ + c/ops/RECEIVE.c
+@ + c/ops/RETURN.c
+@ + c/ops/ROT.c
+@ + c/ops/SAVE.c
+@ + c/ops/SCSTR.c
+@ + c/ops/SEND.c
+@ + c/ops/SENDN.c
+@ + c/ops/SFETCH.c
+@ + c/ops/SLEEP.c
+@ + c/ops/SSTORE.c
+@ + c/ops/STORE.c
+@ + c/ops/SWAP.c
+@ + c/ops/TUCK.c
+@ + c/ops/TWOABS.c
+@ + c/ops/TWOAND.c
+@ + c/ops/TWOCDOT.c
+@ + c/ops/TWOCEQ.c
+@ + c/ops/TWOCGT.c
+@ + c/ops/TWOCGTR.c
+@ + c/ops/TWOCLT.c
+@ + c/ops/TWOCMIN.c
+@ + c/ops/TWOCMUL.c
+@ + c/ops/TWOCPLU.c
+@ + c/ops/TWOCQUO.c
+@ + c/ops/TWODROP.c
+@ + c/ops/TWODUP.c
+@ + c/ops/TWOEXT.c
+@ + c/ops/TWOFETCH.c
+@ + c/ops/TWOLIT.c
+@ + c/ops/TWOMAX.c
+@ + c/ops/TWOMIN.c
+@ + c/ops/TWOMINUS.c
+@ + c/ops/TWOMOD.c
+@ + c/ops/TWOOR.c
+@ + c/ops/TWOOVER.c
+@ + c/ops/TWORCGT.c
+@ + c/ops/TWORED.c
+@ + c/ops/TWOROT.c
+@ + c/ops/TWOSTORE.c
+@ + c/ops/TWOSWAP.c
+@ + c/ops/TWOVAR.c
+@ + c/ops/TWOR.c
+@ + c/ops/TWOXOR.c
+@ + c/ops/UNTIL.c
+@ + c/ops/VAR.c
+@ + c/ops/WHILE.c
+@ + c/ops/WRITE.c
+@ + c/ops/XOR.c
+@ + c/ops/YIELD.c
+@ + c/ops/ZEROCEQ.c
+@ + c/ops/ZEROCLT.c
+
+
+PROJECT:
+  PROJ_PATH $HOME/proj/rexavm/
+  SRC_PATH $PROJ_PATH/src
+  OBJ_PATH $PROJ_PATH/build
+
