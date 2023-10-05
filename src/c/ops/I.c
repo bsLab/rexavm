@@ -1,0 +1,2 @@
+FSTACKCHECK(2);PUSH(FSTACKTOP(1));
+pc++;DISPATCH(); /* i */
