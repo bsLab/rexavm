@@ -1,0 +1,11 @@
+#!/bin/bash
+
+JC=jc
+SRC=../../src/js
+
+make()
+{
+  echo $@
+  $@
+}
+
