@@ -1,0 +1,22 @@
+#!/bin/bash
+
+CONFIG=$HOME/.arduino15/preferences.txt
+
+SKETCH=`grep last.sketch0.path $CONFIG`
+SKETCH=`dirname $SKETCH`
+SKETCH=${SKETCH/*=/}
+echo $SKETCH
+
+if [ -f $SKETCH/preferences.txt ]
+then
+  cp $SKETCH/preferences.txt $CONFIG
+fi
+
+arduino
+
+SKETCH=`grep last.sketch0.path $CONFIG`
+SKETCH=`dirname $SKETCH`
+SKETCH=${SKETCH/*=/}
+echo $SKETCH
+cp $CONFIG $SKETCH/preferences.txt
+
