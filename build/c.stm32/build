@@ -1,0 +1,72 @@
+#!/bin/bash
+
+TOOLS=../../src/tools
+CONFIG=../../src/config
+SRC=../../src/c
+INC=../../src/c
+MAKEVM=../tools/makeVM
+
+# Config
+LEXER=1
+DICTLINEAR=0
+CODESIZE=5000
+STACKSIZE=256
+RSTACKSIZE=128
+FSTACKSIZE=128
+LUTSIZE=64
+CONFIG=config.h
+
+check ()
+{
+  if [ $? != 0 ]
+  then
+    echo "Abort due to errors building target."
+    exit 1
+  fi
+}
+
+make() 
+{
+  echo "$@"
+  $@
+}
+
+makeVM()
+{
+  make $MAKEVM --with-dsp -D LEXER=$LEXER -D DICTLINEAR=$DICTLINEAR -D SYSARCH=stm32 \
+               -D CODESIZE=$CODESIZE -D STACKSIZE=$STACKSIZE -D RSTACKSIZE=$RSTACKSIZE \
+               -D FSTACKSIZE=$FSTACKSIZE -D LUTSIZE=$LUTSIZE -c $CONFIG -o out default
+  # $CONFIG/wordlist.txt
+  check
+}
+
+
+while [ $1 ]
+do
+    TARGET=$1
+    shift
+    echo "Building target [$TARGET] ..."
+
+    case $TARGET in
+        vm)
+            makeVM
+            check
+            ;;
+        world)
+            rm -f out/*
+            cd ../db
+            build all
+            check
+            cd -
+            cd ../tools
+            build all
+            check
+            cd -
+            makeVM
+            check
+            ;;        
+        clean)
+            rm -f out/*
+            ;;
+    esac
+done
