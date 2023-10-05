@@ -1,0 +1,2 @@
+RSTACKCHECK(2);da=RSTACKTOP2(1);PUSH2(da);
+pc++;DISPATCH(); /* 2r */
