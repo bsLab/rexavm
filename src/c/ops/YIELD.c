@@ -1,0 +1,1 @@
+DEBUG("yield\n"); pc++; goto end; /* yield */
