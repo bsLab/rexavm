@@ -1,0 +1,78 @@
+FILES:
+
+--- LST -------
+
+@ + tools/js/makelst.js
+@ + tools/js/makeWords.js
+@ + tools/js/lst.js
+
+@ + tools/js/sqlite3.js
+
+--- VM GENERATOR ---
+@ + tools/js/compiler.js
+@ + tools/js/makeVM.js
+
+--- VM DB GENERATOR ---
+@ + tools/js/buildDB.js
+
+@ + config/wordlist.txt
+@ + config/wordlistX.txt
+
+
+--- PERFECTHASH ---
+
+@ + tools/c/perfecthash/lookupa.c
+@ + tools/c/perfecthash/lookupa.h
+@ + tools/c/perfecthash/perfect.c
+@ + tools/c/perfecthash/makecodeimp.c
+@ + tools/c/perfecthash/makecode.c
+@ + tools/c/perfecthash/makevm.c
+
+@ + tools/js/perfecthash.js
+
+--- CORE VM ---
+@ + c/compile.c
+@ + c/compile.h
+@ + c/dict.c
+@ + c/dict.h
+@ + c/diss.c
+@ + c/diss.h
+@ + c/lookupa.c
+@ + c/lookupa.h
+@ + c/lookupl.c
+@ + c/lookupl.h
+@ + c/stack.c
+@ + c/stack.h
+@ + c/standard.h
+@ + c/vm.c
+@ + c/vm.h
+@ + c/vmloop.h
+@ + c/vmio.h
+@ + c/vmio.c
+@ + c/vmsys.h
+@ + c/vmsys.c
+
+
+--- DSP ---
+@ + c/dsp/fpsin.c
+@ + c/dsp/fpsin.h
+@ + c/dsp/fplog10.c
+@ + c/dsp/fplog10.h
+@ + c/dsp/fpsigmoid.c
+@ + c/dsp/fpsigmoid.h
+@ + c/dsp/fpvec.c
+@ + c/dsp/fpvec.h
+
+--- READLINE ---
+@ + c/sys/readline/readline.c
+@ + c/sys/readline/readline.h
+
+--- TOP ---
+
+@ + c/sys/unix/main.c
+
+PROJECT:
+  PROJ_PATH $HOME/proj/rexavm/
+  SRC_PATH $PROJ_PATH/src
+  OBJ_PATH $PROJ_PATH/build
+
