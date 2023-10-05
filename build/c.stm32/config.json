@@ -1,0 +1,5 @@
+{
+  "macros" : {
+    "CONSOLE": "(msg)           Serial.print(msg)"
+  }
+}
