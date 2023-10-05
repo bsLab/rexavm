@@ -2,21 +2,34 @@
 
 CONFIG=$HOME/.arduino15/preferences.txt
 
-SKETCH=`grep last.sketch0.path $CONFIG`
-SKETCH=`dirname $SKETCH`
-SKETCH=${SKETCH/*=/}
-echo $SKETCH
+if [ "X$1" == "X" ]
+then
+  SKETCH=`grep last.sketch0.path $CONFIG`
+  SKETCH=`dirname $SKETCH`
+  SKETCH=${SKETCH/*=/}
+  echo $SKETCH
+else
+  SKETCH=$PWD
+fi
 
 if [ -f $SKETCH/preferences.txt ]
 then
-  cp $SKETCH/preferences.txt $CONFIG
+  echo "Using $SKETCH/preferences.txt"
+  PREF=`grep -v custom_ $CONFIG`
+  echo "$PREF" > $CONFIG
+  cat $SKETCH/preferences.txt >> $CONFIG
 fi
 
-arduino
+arduino > /dev/null 2>&1
 
 SKETCH=`grep last.sketch0.path $CONFIG`
 SKETCH=`dirname $SKETCH`
 SKETCH=${SKETCH/*=/}
-echo $SKETCH
-cp $CONFIG $SKETCH/preferences.txt
+
+echo "Saving preferences.txt in $SKETCH? [y/n]"
+read -n 1 KEY
+if [ $KEY == "y" ]
+then
+  grep custom_ $CONFIG > $SKETCH/preferences.txt
+fi
 
