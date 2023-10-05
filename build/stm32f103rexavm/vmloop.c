@@ -1,0 +1,136 @@
+#include "config.h"
+#include "standard.h"
+#include "vm.h"
+#include "stack.h"
+#include "compile.h"
+#include "vmcode.h"
+#include "vmio.h"
+#include "vmimpl.h"
+#include "vmloop.h"
+#include "vmsys.h"
+sw1 vmloop(ub1 *code, uw1 pc, ub2 steps) {
+  uw1 addr; sw1 a,b,c,d,e,f,g,h; sw2 da,db,dc,dd,de,df,dg,dh;
+  vmstate|=VMRUN;
+  while(1) switch(DECODE(code[pc])) {
+    case 0: DO_NOP;
+    case 1: DO_STORE;
+    case 2: DO_CDOLL;
+    case 3: DO_CMUL;
+    case 4: DO_CPLU;
+    case 5: DO_CMIN;
+    case 6: DO_CDOT;
+    case 7: DO_CQUO;
+    case 8: DO_DEFINE;
+    case 9: DO_DEFRET;
+    case 10: DO_CLT;
+    case 11: DO_CEQ;
+    case 12: DO_CGT;
+    case 13: DO_FETCH;
+    case 14: DO_F;
+    case 15: DO_I;
+    case 16: DO_J;
+    case 17: DO_R;
+    case 18: DO_CDOTCSTR;
+    case 19: DO_CDOTS;
+    case 20: DO_ZEROCLT;
+    case 21: DO_ZEROCEQ;
+    case 22: DO_TWOSTORE;
+    case 23: DO_TWOCMUL;
+    case 24: DO_TWOCPLU;
+    case 25: DO_TWOCMIN;
+    case 26: DO_TWOCDOT;
+    case 27: DO_TWOCQUO;
+    case 28: DO_TWOCLT;
+    case 29: DO_TWOCEQ;
+    case 30: DO_TWOCGT;
+    case 31: DO_TWOFETCH;
+    case 32: DO_DEFINECMUL;
+    case 33: DO_CGTF;
+    case 34: DO_CGTR;
+    case 35: DO_CR;
+    case 36: DO_DO;
+    case 37: DO_FCGT;
+    case 38: DO_IF;
+    case 39: DO_OR;
+    case 40: DO_RCGT;
+    case 41: DO_SSTORE;
+    case 42: DO_SCSTR;
+    case 43: DO_SFETCH;
+    case 44: DO_TWOOR;
+    case 45: DO_ABS;
+    case 46: DO_AND;
+    case 47: DO_DUP;
+    case 48: DO_END;
+    case 49: DO_INP;
+    case 50: DO_MAX;
+    case 51: DO_MIN;
+    case 52: DO_MOD;
+    case 53: DO_ONE;
+    case 54: DO_OUT;
+    case 55: DO_ROT;
+    case 56: DO_VAR;
+    case 57: DO_XOR;
+    case 58: DO_CMINDUP;
+    case 59: DO_TWOABS;
+    case 60: DO_TWOAND;
+    case 61: DO_TWODUP;
+    case 62: DO_TWOEXT;
+    case 63: DO_TWOMAX;
+    case 64: DO_TWOMIN;
+    case 65: DO_TWOMOD;
+    case 66: DO_TWORED;
+    case 67: DO_TWOROT;
+    case 68: DO_TWOVAR;
+    case 69: DO_TWOXOR;
+    case 70: DO_BASE;
+    case 71: DO_DROP;
+    case 72: DO_ELSE;
+    case 73: DO_LOAD;
+    case 74: DO_LOOP;
+    case 75: DO_OVER;
+    case 76: DO_PICK;
+    case 77: DO_READ;
+    case 78: DO_SAVE;
+    case 79: DO_SEND;
+    case 80: DO_SWAP;
+    case 81: DO_CPLULOOP;
+    case 82: DO_TWODROP;
+    case 83: DO_TWOOVER;
+    case 84: DO_TWOSWAP;
+    case 85: DO_AGAIN;
+    case 86: DO_ARRAY;
+    case 87: DO_AWAIT;
+    case 88: DO_BEGIN;
+    case 89: DO_CELLCPLU;
+    case 90: DO_CONST;
+    case 91: DO_ENDIF;
+    case 92: DO_FDROP;
+    case 93: DO_FPICK;
+    case 94: DO_LEAVE;
+    case 95: DO_MINUS;
+    case 96: DO_SENDN;
+    case 97: DO_SLEEP;
+    case 98: DO_UNTIL;
+    case 99: DO_WHILE;
+    case 100: DO_WRITE;
+    case 101: DO_YIELD;
+    case 102: DO_TWOMINUS;
+    case 103: DO_FORGET;
+    case 104: DO_RETURN;
+    case 105: DO_RECEIVE;
+    case 106: DO_CALL;
+    case 107: DO_FCALL;
+    case 108: DO_BRANCH;
+    case 109: DO_BRANCHZ;
+    case 110: DO_INDIRECT;
+    case 111: DO_MULADD;
+    case 112: DO_NOP;
+    case 113: DO_LIT;
+    case 114: DO_TWOLIT;
+    default: pc++;
+  };
+  onerror:  vmstate=VMERROR;   return pc;
+  suspend:  vmstate=VMSUSPEND; return -pc;
+  schedule: return pc;
+  end:      vmstate=VMEND;     return pc;
+};
