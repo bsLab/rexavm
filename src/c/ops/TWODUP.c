@@ -1,0 +1,3 @@
+STACKCHECK(2);da=STACKTOP2(1);
+PUSH2(da);
+pc++;DISPATCH(); /* 2dup */
