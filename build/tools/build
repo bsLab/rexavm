@@ -1,0 +1,16 @@
+#!/bin/bash
+
+JC=jc
+SRC=../../src/tools/js
+
+make()
+{
+  echo $@
+  $@
+}
+makeVM() 
+{
+  make $JC $SRC/makeVM.js -I $SRC -I ../db -o makeVM
+}
+
+makeVM
