@@ -6,7 +6,7 @@ rexavm: "Real-time capable execution with Artificial Neural Network support" Vir
 
 ---
 
-**From now on, any updates are only availble here**:
+**Starting from 10/2023, this repository is not updated frequently (or at all) and any recent updates are only availble here:**:
 
 http://git.edu-9.de/sbosse/rexavm
 
