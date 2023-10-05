@@ -1,0 +1,2 @@
+STACKCHECK(2);FPUSH2U(POP2U());
+pc+=3;DISPATCH(); /* do */
