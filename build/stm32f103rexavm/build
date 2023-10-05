@@ -1,0 +1,44 @@
+#!/bin/bash
+
+MAKEVM=../tools/makeVM
+
+# Config
+LEXER=1
+DICTLINEAR=0
+CODESIZE=6000
+STACKSIZE=256
+RSTACKSIZE=128
+FSTACKSIZE=128
+LUTSIZE=64
+
+check ()
+{
+  if [ $? != 0 ]
+  then
+    echo "Abort due to errors building target."
+    exit 1
+  fi
+}
+
+make() 
+{
+  echo "$@"
+  $@
+}
+
+makeCode()
+{
+  make $MAKEVM --with-dsp -D SYSARCH=stm32 -c config.input.h default
+  # $CONFIG/wordlist.txt
+  check
+}
+makeCode2()
+{
+  make $MAKEVM --with-dsp -D LEXER=$LEXER -D DICTLINEAR=$DICTLINEAR -D SYSARCH=stm32 \
+               -D CODESIZE=$CODESIZE -D STACKSIZE=$STACKSIZE -D RSTACKSIZE=$RSTACKSIZE \
+               -D FSTACKSIZE=$FSTACKSIZE -D LUTSIZE=$LUTSIZE -DFPDEBUG=0 -c config.input.h default
+  # $CONFIG/wordlist.txt
+  check
+}
+
+makeCode
