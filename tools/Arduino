@@ -15,7 +15,7 @@ fi
 if [ -f $SKETCH/preferences.txt ]
 then
   echo "Using $SKETCH/preferences.txt"
-  PREF=`grep -v custom_ $CONFIG`
+  PREF=`grep -v 'custom_\|board=' $CONFIG`
   echo "$PREF" > $CONFIG
   cat $SKETCH/preferences.txt >> $CONFIG
 fi
@@ -30,6 +30,6 @@ echo "Saving preferences.txt in $SKETCH? [y/n]"
 read -n 1 KEY
 if [ $KEY == "y" ]
 then
-  grep custom_ $CONFIG > $SKETCH/preferences.txt
+  grep 'custom_\|board=' $CONFIG > $SKETCH/preferences.txt
 fi
 
